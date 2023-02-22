@@ -1,14 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { useState } from 'react';
 import { ColorGrid } from './ColorGrid';
 
 export const Landing = () => {
+  const initColors = {
+    topLeft: '#355070',
+    topRight: '#6d597a',
+    bottomLeft: '#e56b6f',
+    bottomRight: '#eaac8b',
+  };
+  const [colors, setColors] = useState(initColors);
+  const makeGrid = () => {
+    console.log('making grid')
+  }
+
   return (
     <View style={styles.container}>
       <Text>Tiles!</Text>
-      <ColorGrid />
+      <ColorGrid
+        colors={colors}
+      />
       {/* difficulty controls here */}
-      <Button title="Go"></Button>
+      <Button title="Go" onPress={makeGrid}></Button>
     </View>
   );
 }
