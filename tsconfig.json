@@ -1,0 +1,9 @@
+{
+  "extends": "expo/tsconfig.base",
+  "includes": [
+    "src/globals.d.ts"
+  ],
+  "compilerOptions": {
+    "strict": true
+  }
+}
