@@ -2,16 +2,21 @@ import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-export const ColorGrid = ({ colors }) => {
-  const initStylesFromProps = {
-    topLeft: {backgroundColor: 'red'},
-    topRight: {backgroundColor: 'blue'},
-    bottomLeft: {backgroundColor: 'yellow'},
-    bottomRight: {backgroundColor: 'green'},
-  };
-  const [colorStyles, setColorStyles] = useState(initStylesFromProps);
-  const setColorStyleVariables = (colorsObj) => {
-    const propColorStyles = {};
+type ColorsSet = {
+  topLeft: 'string',
+  topRight: 'string',
+  bottomLeft: 'string',
+  bottomRight: 'string',
+};
+
+type ColorGridProps = {
+  colors: ColorsSet;
+};
+
+export const ColorGrid = ({ colors }: ColorGridProps) => {
+  const [colorStyles, setColorStyles] = useState({});
+  const setColorStyleVariables = (colorsObj: ColorsSet) => {
+    const propColorStyles: any = {};
     for (const [key, value] of Object.entries(colorsObj)) {
       propColorStyles[key] = {backgroundColor: value};
     }
