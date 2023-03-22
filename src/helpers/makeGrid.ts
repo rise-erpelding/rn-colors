@@ -1,6 +1,6 @@
 import { makeRow } from "./makeRow";
 
-export const makeGrid = (gridSize, topLeftColor, topRightColor, bottomLeftColor, bottomRightColor) => {
+export const makeGrid = (gridSize: number, topLeftColor: string, topRightColor: string, bottomLeftColor: string, bottomRightColor: string) => {
   const grid = [];
   const firstRow = 0;
   const lastRow = gridSize - 1;

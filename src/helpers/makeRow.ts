@@ -1,7 +1,8 @@
 import { convertHexToRGB, convertRGBToHex } from "./colorHelpers";
 import { makeStops } from "./makeStops";
+import { RGBColor } from "../types";
 
-export const makeRow = (length, startColor, endColor) => {
+export const makeRow = (length: number, startColor: string, endColor: string) => {
   const row = new Array(length);
   const startColorRGB = convertHexToRGB(startColor);
   const endColorRGB = convertHexToRGB(endColor);
