@@ -1,6 +1,6 @@
 import { checkRGBValidity, isInteger } from "./colorHelpers";
 
-export const makeStops = (size, startVal, endVal) => {
+export const makeStops = (size: number, startVal: number, endVal: number) => {
   if (typeof size !== 'number') {
     throw new TypeError('size must be a number');
   }

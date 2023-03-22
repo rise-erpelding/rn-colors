@@ -1,16 +1,16 @@
-export const checkRGBValidity = (num) => {
+export const checkRGBValidity = (num: number): boolean => {
   if (typeof num !== 'number') {
     throw new TypeError('num must be a number');
   }
   return (num >= 0 && num <= 255);
 };
 
-export const isInteger = (value) => typeof value === 'number'
+export const isInteger = (value: number): boolean => typeof value === 'number'
     // eslint-disable-next-line no-restricted-globals
     && isFinite(value)
     && Math.floor(value) === value;
 
-export const componentToHex = (rgbVal) => {
+export const componentToHex = (rgbVal: number): string => {
   if (typeof rgbVal !== 'number') {
     throw new TypeError('rgbVal must be a number');
   }
@@ -21,9 +21,9 @@ export const componentToHex = (rgbVal) => {
   return hex.length === 1 ? `0${hex}` : hex;
 };
 
-export const convertRGBToHex = (r, g, b) => `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
+export const convertRGBToHex = (r: number, g: number, b: number): string => `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
 
-export const convertHexToRGB = (hex) => {
+export const convertHexToRGB = (hex: string) => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (result === null) {
     throw new Error('not a valid hex');
@@ -32,5 +32,9 @@ export const convertHexToRGB = (hex) => {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16),
-  } : null;
+  } : {
+    r: 255,
+    g: 255,
+    b: 255,
+  };
 };
