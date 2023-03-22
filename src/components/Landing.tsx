@@ -14,6 +14,10 @@ export const Landing = () => {
     console.log('making grid')
   }
 
+  const shuffleColors = () => {
+    console.log('shuffle colors')
+  }
+
   return (
     <View style={styles.container}>
       <Text>Tiles!</Text>
@@ -21,6 +25,7 @@ export const Landing = () => {
         colors={colors}
       />
       {/* difficulty controls here */}
+      <Button title="Shuffle Colors" onPress={shuffleColors}></Button>
       <Button title="Go" onPress={makeGrid}></Button>
     </View>
   );
