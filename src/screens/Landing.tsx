@@ -1,8 +1,11 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useState } from 'react';
-import { InitColorGrid } from './InitColorGrid';
+import { InitColorGrid } from '../components/InitColorGrid';
 import { makeGrid } from '../helpers/makeGrid';
 import Slider from '@react-native-community/slider';
+import { DynamicColorGrid } from '../components/DynamicColorGrid';
+
+const defaultGrid = [["#355070", "#515575", "#6d597a"], ["#8d5e70", "#9d7179", "#ac8383"], ["#e56b6f", "#e88c7d", "#eaac8b"]];
 
 export const Landing = () => {
   const initColors = {
@@ -12,10 +15,12 @@ export const Landing = () => {
     bottomRightColor: '#eaac8b',
   };
   const [colors, setColors] = useState(initColors);
-  const [difficulty, setDifficulty] = useState(1);
+  const [difficulty, setDifficulty] = useState(3);
+  const [colorsGrid, setColorsGrid] = useState(defaultGrid);
   const handleColors = () => {
-    const colorsGrid = makeGrid(difficulty, colors);
-    console.log(colorsGrid)
+    const dynamicGrid = makeGrid(difficulty, colors);
+    console.log(dynamicGrid)
+    setColorsGrid(dynamicGrid);
   }
 
   const shuffleColors = () => {
@@ -44,6 +49,7 @@ export const Landing = () => {
       />
       <Button title="Shuffle Colors" onPress={shuffleColors}></Button>
       <Button title="Go" onPress={handleColors}></Button>
+      <DynamicColorGrid colorGrid={colorsGrid} />
     </View>
   );
 }
