@@ -3,23 +3,25 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 type ColorsSet = {
-  topLeft: 'string',
-  topRight: 'string',
-  bottomLeft: 'string',
-  bottomRight: 'string',
+  topLeftColor: 'string',
+  topRightColor: 'string',
+  bottomLeftColor: 'string',
+  bottomRightColor: 'string',
 };
 
-type ColorGridProps = {
+type InitColorGridProps = {
   colors: ColorsSet;
 };
 
-export const ColorGrid = ({ colors }: ColorGridProps) => {
+export const InitColorGrid = ({ colors }: InitColorGridProps) => {
+  console.log(colors);
   const [colorStyles, setColorStyles] = useState({});
   const setColorStyleVariables = (colorsObj: ColorsSet) => {
     const propColorStyles: any = {};
     for (const [key, value] of Object.entries(colorsObj)) {
       propColorStyles[key] = {backgroundColor: value};
     }
+    console.log(propColorStyles);
     setColorStyles(propColorStyles);
   };
 
@@ -30,12 +32,12 @@ export const ColorGrid = ({ colors }: ColorGridProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <View style={[styles.topLeft, colorStyles.topLeft]} />
-        <View style={[styles.topRight, colorStyles.topRight]} />
+        <View style={[styles.topLeft, colorStyles.topLeftColor]} />
+        <View style={[styles.topRight, colorStyles.topRightColor]} />
       </View>
       <View style={styles.row}>
-        <View style={[styles.bottomLeft, colorStyles.bottomLeft]} />
-        <View style={[styles.bottomRight, colorStyles.bottomRight]} />
+        <View style={[styles.bottomLeft, colorStyles.bottomLeftColor]} />
+        <View style={[styles.bottomRight, colorStyles.bottomRightColor]} />
       </View>
     </View>
   );

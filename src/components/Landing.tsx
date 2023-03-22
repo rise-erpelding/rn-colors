@@ -1,17 +1,19 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useState } from 'react';
-import { ColorGrid } from './ColorGrid';
+import { InitColorGrid } from './InitColorGrid';
+import { makeGrid } from '../helpers/makeGrid';
 
 export const Landing = () => {
   const initColors = {
-    topLeft: '#355070',
-    topRight: '#6d597a',
-    bottomLeft: '#e56b6f',
-    bottomRight: '#eaac8b',
+    topLeftColor: '#355070',
+    topRightColor: '#6d597a',
+    bottomLeftColor: '#e56b6f',
+    bottomRightColor: '#eaac8b',
   };
   const [colors, setColors] = useState(initColors);
-  const makeGrid = () => {
-    console.log('making grid')
+  const handleColors = () => {
+    const colorsGrid = makeGrid(6, colors);
+    console.log(colorsGrid)
   }
 
   const shuffleColors = () => {
@@ -21,12 +23,12 @@ export const Landing = () => {
   return (
     <View style={styles.container}>
       <Text>Tiles!</Text>
-      <ColorGrid
+      <InitColorGrid
         colors={colors}
       />
       {/* difficulty controls here */}
       <Button title="Shuffle Colors" onPress={shuffleColors}></Button>
-      <Button title="Go" onPress={makeGrid}></Button>
+      <Button title="Go" onPress={handleColors}></Button>
     </View>
   );
 }
