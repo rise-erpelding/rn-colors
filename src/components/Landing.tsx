@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { useState } from 'react';
 import { InitColorGrid } from './InitColorGrid';
 import { makeGrid } from '../helpers/makeGrid';
+import Slider from '@react-native-community/slider';
 
 export const Landing = () => {
   const initColors = {
@@ -11,13 +12,20 @@ export const Landing = () => {
     bottomRightColor: '#eaac8b',
   };
   const [colors, setColors] = useState(initColors);
+  const [difficulty, setDifficulty] = useState(1);
   const handleColors = () => {
-    const colorsGrid = makeGrid(6, colors);
+    const colorsGrid = makeGrid(difficulty, colors);
     console.log(colorsGrid)
   }
 
   const shuffleColors = () => {
     console.log('shuffle colors')
+  }
+
+  const handleSliderValue = (value: number) => {
+    const difficulty = Math.floor(value);
+    console.log(`slider value is ${difficulty}`);
+    setDifficulty(difficulty);
   }
 
   return (
@@ -26,7 +34,14 @@ export const Landing = () => {
       <InitColorGrid
         colors={colors}
       />
-      {/* difficulty controls here */}
+      <Slider
+        style={{width: 200, height: 40}}
+        minimumValue={3}
+        maximumValue={12}
+        minimumTrackTintColor="#5CB8E4"
+        maximumTrackTintColor="#8758FF"
+        onSlidingComplete={handleSliderValue}
+      />
       <Button title="Shuffle Colors" onPress={shuffleColors}></Button>
       <Button title="Go" onPress={handleColors}></Button>
     </View>
