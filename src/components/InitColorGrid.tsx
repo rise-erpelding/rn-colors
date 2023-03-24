@@ -14,14 +14,12 @@ type InitColorGridProps = {
 };
 
 export const InitColorGrid = ({ colors }: InitColorGridProps) => {
-  console.log(colors);
   const [colorStyles, setColorStyles] = useState({});
   const setColorStyleVariables = (colorsObj: ColorsSet) => {
     const propColorStyles: any = {};
     for (const [key, value] of Object.entries(colorsObj)) {
       propColorStyles[key] = {backgroundColor: value};
     }
-    console.log(propColorStyles);
     setColorStyles(propColorStyles);
   };
 

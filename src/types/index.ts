@@ -5,8 +5,8 @@ export type RGBColor = {
 };
 
 // TODO: make this more specific later if can
-export type HexColor = string;
+export type HexColorType = string;
 
-export type ColorsRow = HexColor[];
+export type ColorsRowType = HexColorType[];
 
-export type ColorsGrid = ColorsRow[];
+export type ColorsGridType = ColorsRowType[];
