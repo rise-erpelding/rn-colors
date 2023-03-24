@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { ColorsGrid } from '../types';
+import { useState, useEffect } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { ColorsGridType } from '../types';
 
 type DynamicColorGridProps = {
-  colorGrid: ColorsGrid;
+  colorGrid: ColorsGridType;
 };
 
 type ColorGridSwatchProps = {
@@ -15,6 +15,8 @@ type ColorGridRowProps = {
   rowColors: string[];
   swatchWidth: number;
 };
+
+const defaultGrid = [["#355070", "#515575", "#6d597a"], ["#8d5e70", "#9d7179", "#ac8383"], ["#e56b6f", "#e88c7d", "#eaac8b"]];
 
 const ColorGridSwatch = ({ swatchColor, swatchWidth }: ColorGridSwatchProps) => {
   return (
@@ -30,18 +32,26 @@ const ColorGridRow = ({ rowColors, swatchWidth }: ColorGridRowProps) => {
   );
 }
 
-export const DynamicColorGrid = ({ colorGrid }: DynamicColorGridProps) => {
+export const DynamicColorGrid = ({ colorGrid }: any) => {
   const [swatchWidth, setSwatchWidth] = useState(15);
-  const gridSize = colorGrid.length;
+  const [currentGrid, setCurrentGrid] = useState(defaultGrid);
+  const gridSize = currentGrid.length;
   const handleLayout = (event: any) => {
     console.log('handleLayout is running')
     const width = event.nativeEvent.layout.width;
     setSwatchWidth(Math.floor(width/gridSize));
   }
 
+  useEffect(() => {
+    if (!!colorGrid) {
+      setCurrentGrid(colorGrid);
+    };
+  }, []);
+
   return (
     <View style={styles.container} onLayout={handleLayout}>
-      {colorGrid.map((row, index) => (
+      {/* <Text>Hello dynamic grid</Text> */}
+      {currentGrid.map((row, index) => (
         <ColorGridRow
           key={row[0] + index}
           rowColors={row}
