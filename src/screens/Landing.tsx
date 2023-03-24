@@ -49,7 +49,7 @@ export const Landing = () => {
       />
       <Button title="Shuffle Colors" onPress={shuffleColors}></Button>
       <Button title="Go" onPress={handleColors}></Button>
-      <DynamicColorGrid colorGrid={colorsGrid} />
+      {/* <DynamicColorGrid colorGrid={colorsGrid} /> */}
     </View>
   );
 }
