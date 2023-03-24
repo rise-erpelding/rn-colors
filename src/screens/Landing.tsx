@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { InitColorGrid } from '../components/InitColorGrid';
 import { makeGrid } from '../helpers/makeGrid';
 import Slider from '@react-native-community/slider';
+import { shuffle } from '../helpers/shuffle';
+import { themes } from '../helpers/themes';
 
 const defaultGrid = [["#355070", "#515575", "#6d597a"], ["#8d5e70", "#9d7179", "#ac8383"], ["#e56b6f", "#e88c7d", "#eaac8b"]];
 
@@ -26,11 +28,19 @@ export const Landing = ({ navigation }: any) => {
 
   const shuffleColors = () => {
     console.log('shuffle colors')
+    const randomThemeIndex = Math.floor(Math.random() * (themes.length));
+    const themeArr = themes[randomThemeIndex];
+    const newTheme = {
+      topLeftColor: themeArr[0],
+      topRightColor: themeArr[1],
+      bottomLeftColor: themeArr[2],
+      bottomRightColor: themeArr[3],
+    };
+    setColors(newTheme);
   }
 
   const handleSliderValue = (value: number) => {
     const difficulty = Math.floor(value);
-    console.log(`slider value is ${difficulty}`);
     setDifficulty(difficulty);
   }
 

@@ -25,7 +25,7 @@ export const InitColorGrid = ({ colors }: InitColorGridProps) => {
 
   useEffect(() => {
     setColorStyleVariables(colors);
-  }, []);
+  }, [colors]);
 
   return (
     <View style={styles.container}>
